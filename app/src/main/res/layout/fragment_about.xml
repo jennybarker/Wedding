@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragments.AboutFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorLightBack2"
+        android:id="@+id/about_title"
+        android:text="About us"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/colorTextLight"
+        android:padding="10dp"
+        android:textSize="30sp"
+        android:fontFamily="@font/clicker_script"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@+id/about_title"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jenny and Matt"
+            android:layout_marginTop = "10dp"
+            android:textSize="42sp"
+            android:textAlignment="center"
+            android:textColor="@color/colorTextDark"
+            android:fontFamily="@font/clicker_script" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="We are so excited that today is our wedding day!
+We’ve been together for 8 years and have loved every minute."
+            android:layout_marginBottom = "8dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:textColor="@color/colorTextDark" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/about_us"
+            android:layout_weight="1"
+            android:scaleType="centerCrop"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:id="@+id/button_engagement"
+            android:text="Our Engagement                                   >"
+            android:fontFamily="@font/clicker_script"
+            android:textAllCaps="false"
+            android:textColor="@color/colorTextDark"
+            android:padding="10dp"
+            android:textSize="24sp"
+            android:foreground="?attr/selectableItemBackground"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorTextLight" >
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:id="@+id/button_story"
+            android:text="Our Story                                            >"
+            android:fontFamily="@font/clicker_script"
+            android:textAllCaps="false"
+            android:textColor="@color/colorTextDark"
+            android:padding="10dp"
+            android:textSize="24sp"
+            android:foreground="?attr/selectableItemBackground"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorTextLight" >
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:id="@+id/button_hen"
+            android:text="Hen Party                                           > "
+            android:textAllCaps="false"
+            android:fontFamily="@font/clicker_script"
+            android:textColor="@color/colorTextDark"
+            android:padding="10dp"
+            android:textSize="24sp"
+            android:foreground="?attr/selectableItemBackground"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorTextLight" >
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:id="@+id/button_stag"
+            android:fontFamily="@font/clicker_script"
+            android:text="Stag Party                                          >"
+            android:textAllCaps="false"
+            android:textColor="@color/colorTextDark"
+            android:padding="10dp"
+            android:textSize="24sp"
+            android:foreground="?attr/selectableItemBackground"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
