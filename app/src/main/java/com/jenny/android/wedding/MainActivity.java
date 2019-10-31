@@ -4,14 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.jenny.android.wedding.Fragments.AboutFragment;
+import com.jenny.android.wedding.Fragments.GuestsFragment;
 import com.jenny.android.wedding.Fragments.GamesFragment;
 import com.jenny.android.wedding.Fragments.HomeFragment;
 import com.jenny.android.wedding.Fragments.PhotoFragment;
@@ -34,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListnener =
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
 
                         case R.id.nav_about:
-                            selectedFragment = new AboutFragment();
+                            selectedFragment = new GuestsFragment();
                             break;
 
                         case R.id.nav_photos:
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
                     if(selectedFragment!= null){
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                                selectedFragment).commit();
+                                selectedFragment).addToBackStack(null).commit();
                     }
 
                     return true;

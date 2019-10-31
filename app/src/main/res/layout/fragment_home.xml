@@ -36,12 +36,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="2nd July 2021"
                     android:layout_marginBottom="10dp"
-                    android:textSize="24sp"
+                    android:fontFamily="@font/clicker_script"
+                    android:text="22nd August 2020"
                     android:textAlignment="center"
                     android:textColor="@color/colorTextDark"
-                    android:fontFamily="@font/clicker_script" />
+                    android:textSize="24sp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -159,18 +159,77 @@
                     android:layout_height="0.5dp"
                     android:background="@color/colorTextLight"></LinearLayout>
 
+
                 <Button
-                    android:id="@+id/button_guests"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
+                    android:id="@+id/button_engagement"
+                    android:text="Our Engagement                                   >"
                     android:fontFamily="@font/clicker_script"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:padding="10dp"
-                    android:text="Guests                                                 >"
                     android:textAllCaps="false"
                     android:textColor="@color/colorTextDark"
-                    android:textSize="24sp" />
+                    android:padding="10dp"
+                    android:textSize="24sp"
+                    android:foreground="?attr/selectableItemBackground"/>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorTextLight" >
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:id="@+id/button_story"
+                    android:text="Our Story                                            >"
+                    android:fontFamily="@font/clicker_script"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorTextDark"
+                    android:padding="10dp"
+                    android:textSize="24sp"
+                    android:foreground="?attr/selectableItemBackground"/>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorTextLight" >
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:id="@+id/button_hen"
+                    android:text="Hen Party                                           > "
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/clicker_script"
+                    android:textColor="@color/colorTextDark"
+                    android:padding="10dp"
+                    android:textSize="24sp"
+                    android:foreground="?attr/selectableItemBackground"/>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/colorTextLight" >
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:id="@+id/button_stag"
+                    android:fontFamily="@font/clicker_script"
+                    android:text="Stag Party                                          >"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorTextDark"
+                    android:padding="10dp"
+                    android:textSize="24sp"
+                    android:foreground="?attr/selectableItemBackground"/>
+
 
         </LinearLayout>
 
