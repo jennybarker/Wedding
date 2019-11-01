@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:id="@+id/toolbar"
-            android:background="@color/colorLightBack3">
+            android:background="@color/colorLightBack2">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -26,13 +26,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/post"
-                    android:textSize="20sp"
+                    android:textSize="30sp"
                     android:text="Wedding Photos"
                     android:layout_centerVertical="true"
-                    android:layout_alignParentStart="true"
                     android:textColor="@color/colorTextLight"
                     android:fontFamily="@font/clicker_script"
-                    android:layout_alignParentLeft="true" />
+                    android:layout_centerHorizontal="true" />
 
 
                 <ImageView
@@ -52,12 +51,10 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text= "News feed"
-        android:layout_gravity="center"
-        android:gravity="center"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler_view"
+        android:layout_below="@+id/bar"/>
 
 </RelativeLayout>
