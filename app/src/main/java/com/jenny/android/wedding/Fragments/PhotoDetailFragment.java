@@ -1,7 +1,7 @@
 package com.jenny.android.wedding.Fragments;
 
 import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,67 +20,52 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jenny.android.wedding.Adapters.PostAdapter;
-import com.jenny.android.wedding.PostActivity;
 import com.jenny.android.wedding.R;
 import com.jenny.android.wedding.model.Post;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhotoFragment extends Fragment {
 
+public class PhotoDetailFragment extends Fragment {
+
+    String postid;
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
     private List<Post> postList;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.fragment_photo_detail, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_photo, container, false);
-
-        ImageView add_image_button = view.findViewById(R.id.add_image);
-
-        add_image_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(getContext(), PostActivity.class);
-                startActivity(i);
-            }
-        });
+        SharedPreferences preferences = getContext().getSharedPreferences("PREFS", Context.MODE_PRIVATE);
+        postid = preferences.getString("postid", "none");
 
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setReverseLayout(true);
-        linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
+
         postList = new ArrayList<>();
         postAdapter = new PostAdapter(getContext(), postList);
         recyclerView.setAdapter(postAdapter);
 
         readPosts();
 
-        // Inflate the layout for this fragment
         return view;
     }
 
-    private void readPosts() {
-
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
-
+    private void readPosts(){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").child(postid);
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 postList.clear();
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Post post = snapshot.getValue(Post.class);
-                    postList.add(post);
-
-                }
+                Post post = dataSnapshot.getValue(Post.class);
+                postList.add(post);
 
                 postAdapter.notifyDataSetChanged();
             }
@@ -91,8 +75,6 @@ public class PhotoFragment extends Fragment {
 
             }
         });
-
     }
-
 
 }
