@@ -1,6 +1,7 @@
 package com.jenny.android.wedding.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jenny.android.wedding.Adapters.PhotoAdapter;
 import com.jenny.android.wedding.Adapters.PostAdapter;
+import com.jenny.android.wedding.EditProfileActivity;
 import com.jenny.android.wedding.R;
 import com.jenny.android.wedding.model.Post;
 import com.jenny.android.wedding.model.User;
@@ -106,9 +108,21 @@ public class ProfileFragment extends Fragment {
 
         if (profileid.equals(firebaseUser.getUid())){
 
+            edit_profile.setVisibility(View.VISIBLE);
+
         } else {
             saved_photos.setVisibility(View.GONE);
+            edit_profile.setVisibility(View.GONE);
         }
+
+        edit_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //go to edit profile
+                startActivity(new Intent(getContext(), EditProfileActivity.class));
+            }
+        });
 
         my_photos.setOnClickListener(new View.OnClickListener() {
             @Override
