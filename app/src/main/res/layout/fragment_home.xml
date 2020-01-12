@@ -69,18 +69,6 @@
                     android:layout_height="1dp"
                     android:background="@color/colorTextLight"/>
 
-                <Button
-                    android:id="@+id/button_invitation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/white"
-                    android:fontFamily="@font/clicker_script"
-                    android:foreground="?attr/selectableItemBackground"
-                    android:padding="10dp"
-                    android:text="Wedding Invitation                             >"
-                    android:textAllCaps="false"
-                    android:textColor="@color/colorTextDark"
-                    android:textSize="24sp" />
 
                 <TextView
                     android:layout_width="fill_parent"
@@ -95,7 +83,7 @@
                     android:fontFamily="@font/clicker_script"
                     android:foreground="?attr/selectableItemBackground"
                     android:padding="10dp"
-                    android:text="Wedding Ceremony                             >"
+                    android:text="Order of Service"
                     android:textAllCaps="false"
                     android:textColor="@color/colorTextDark"
                     android:textSize="24sp" />
@@ -113,7 +101,7 @@
                     android:fontFamily="@font/clicker_script"
                     android:foreground="?attr/selectableItemBackground"
                     android:padding="10dp"
-                    android:text="Wedding Breakfast                              >"
+                    android:text="Wedding Breakfast"
                     android:textAllCaps="false"
                     android:textColor="@color/colorTextDark"
                     android:textSize="24sp" />
@@ -131,7 +119,7 @@
                     android:fontFamily="@font/clicker_script"
                     android:foreground="?attr/selectableItemBackground"
                     android:padding="10dp"
-                    android:text="Meet the wedding party                          >"
+                    android:text="Meet the wedding party"
                     android:textAllCaps="false"
                     android:textColor="@color/colorTextDark"
                     android:textSize="24sp" />
@@ -149,7 +137,7 @@
                     android:fontFamily="@font/clicker_script"
                     android:foreground="?attr/selectableItemBackground"
                     android:padding="10dp"
-                    android:text="Itinerary                                             >"
+                    android:text="Itinerary"
                     android:textAllCaps="false"
                     android:textColor="@color/colorTextDark"
                     android:textSize="24sp" />
@@ -165,7 +153,7 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
                     android:id="@+id/button_engagement"
-                    android:text="Our Engagement                                   >"
+                    android:text="Our Engagement"
                     android:fontFamily="@font/clicker_script"
                     android:textAllCaps="false"
                     android:textColor="@color/colorTextDark"
@@ -184,7 +172,7 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
                     android:id="@+id/button_story"
-                    android:text="Our Story                                            >"
+                    android:text="Our Story"
                     android:fontFamily="@font/clicker_script"
                     android:textAllCaps="false"
                     android:textColor="@color/colorTextDark"
@@ -203,7 +191,7 @@
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"
                     android:id="@+id/button_hen"
-                    android:text="Hen Party                                           > "
+                    android:text="Hen Party"
                     android:textAllCaps="false"
                     android:fontFamily="@font/clicker_script"
                     android:textColor="@color/colorTextDark"
@@ -223,7 +211,7 @@
                     android:background="@android:color/white"
                     android:id="@+id/button_stag"
                     android:fontFamily="@font/clicker_script"
-                    android:text="Stag Party                                          >"
+                    android:text="Stag Party"
                     android:textAllCaps="false"
                     android:textColor="@color/colorTextDark"
                     android:padding="10dp"

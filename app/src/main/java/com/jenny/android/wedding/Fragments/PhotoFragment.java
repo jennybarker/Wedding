@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +36,8 @@ public class PhotoFragment extends Fragment {
     private PostAdapter postAdapter;
     private List<Post> postList;
 
+    private ProgressBar progressBar;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,6 +47,7 @@ public class PhotoFragment extends Fragment {
 
         ImageView add_image_button = view.findViewById(R.id.add_image);
         ImageView notification_button = view.findViewById(R.id.notifications);
+        progressBar = view.findViewById(R.id.progress_circular);
 
         add_image_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +94,7 @@ public class PhotoFragment extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Post post = snapshot.getValue(Post.class);
                     postList.add(post);
+                    progressBar.setVisibility(View.GONE);
 
                 }
 

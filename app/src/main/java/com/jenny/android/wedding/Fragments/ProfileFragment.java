@@ -31,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.jenny.android.wedding.Adapters.PhotoAdapter;
 import com.jenny.android.wedding.Adapters.PostAdapter;
 import com.jenny.android.wedding.EditProfileActivity;
+import com.jenny.android.wedding.OptionsActivity;
 import com.jenny.android.wedding.R;
 import com.jenny.android.wedding.model.Post;
 import com.jenny.android.wedding.model.User;
@@ -121,6 +122,14 @@ public class ProfileFragment extends Fragment {
 
                 //go to edit profile
                 startActivity(new Intent(getContext(), EditProfileActivity.class));
+            }
+        });
+
+        options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), OptionsActivity.class);
+                startActivity(intent);
             }
         });
 
