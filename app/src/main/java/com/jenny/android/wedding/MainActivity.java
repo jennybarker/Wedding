@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.jenny.android.wedding.Fragments.GuestsFragment;
 import com.jenny.android.wedding.Fragments.GamesFragment;
 import com.jenny.android.wedding.Fragments.HomeFragment;
+import com.jenny.android.wedding.Fragments.NotificationFragment;
 import com.jenny.android.wedding.Fragments.PhotoFragment;
 import com.jenny.android.wedding.Fragments.ProfileFragment;
 
@@ -67,8 +68,12 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new PhotoFragment();
                             break;
 
-                        case R.id.nav_games:
+                      /*  case R.id.nav_games:
                             selectedFragment = new GamesFragment();
+                            break;*/
+
+                        case R.id.nav_notifications:
+                            selectedFragment = new NotificationFragment();
                             break;
 
                         case R.id.nav_profile:

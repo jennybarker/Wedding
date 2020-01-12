@@ -28,6 +28,7 @@ import com.jenny.android.wedding.R;
 import com.jenny.android.wedding.model.Post;
 import com.jenny.android.wedding.model.User;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
@@ -135,6 +136,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 if (holder.like.getTag().equals("like")){
                     FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostid())
                             .child(firebaseUser.getUid()).setValue(true);
+                    addNotifications(post.getPublisher(), post.getPostid());
                 } else {
 
                     FirebaseDatabase.getInstance().getReference().child("Likes").child(post.getPostid())
@@ -192,6 +194,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
 
         }
+
+    }
+
+    private void addNotifications(String userid, String postid){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications").child(userid);
+
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("userid", firebaseUser.getUid());
+        hashMap.put("text", "liked your post");
+        hashMap.put("postid", postid);
+
+        reference.push().setValue(hashMap);
 
     }
 
