@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -34,6 +35,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
     private List<Notification> mNotification;
 
     private FirebaseUser firebaseUser;
+    private boolean postExists;
 
     public NotificationsAdapter(Context mContext, List<Notification> mNotification) {
         this.mContext = mContext;
@@ -75,18 +77,38 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
         getUserInfo(holder.image_profile, holder.username, notification.getUserid());
 
         holder.post_image.setVisibility(View.VISIBLE);
-        getPostImage(holder.post_image, notification.getPostid());
 
+        getPostImage(holder.post_image, notification.getPostid());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
-                editor.putString("postid", notification.getPostid());
-                editor.apply();
 
-                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new PhotoDetailFragment()).addToBackStack(null).commit();
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").child(notification.getPostid());
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Post post = dataSnapshot.getValue(Post.class);
+                        if (post != null){
+                            SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
+                            editor.putString("postid", notification.getPostid());
+                            editor.apply();
+
+                            ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                    new PhotoDetailFragment()).addToBackStack(null).commit();
+
+
+                        } else {
+                            Toast.makeText(mContext, "This post no longer exists", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
 
             }
         });
@@ -119,12 +141,15 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
     }
 
     private void getPostImage(final ImageView imageView, String postid){
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").child(postid);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Post post = dataSnapshot.getValue(Post.class);
-                Glide.with(mContext).load(post.getPostimage()).into(imageView);
+                if (post != null){
+                    Glide.with(mContext).load(post.getPostimage()).into(imageView);
+                }
             }
 
             @Override
@@ -132,5 +157,6 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
 
             }
         });
+
     }
 }

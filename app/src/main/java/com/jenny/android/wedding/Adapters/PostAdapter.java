@@ -35,6 +35,7 @@ import com.jenny.android.wedding.CommentsActivity;
 import com.jenny.android.wedding.Fragments.PhotoDetailFragment;
 import com.jenny.android.wedding.Fragments.ProfileFragment;
 import com.jenny.android.wedding.R;
+import com.jenny.android.wedding.model.Notification;
 import com.jenny.android.wedding.model.Post;
 import com.jenny.android.wedding.model.User;
 

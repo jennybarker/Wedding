@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.jenny.android.wedding.Adapters.NotificationsAdapter;
 import com.jenny.android.wedding.R;
 import com.jenny.android.wedding.model.Notification;
+import com.jenny.android.wedding.model.Post;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,8 +69,10 @@ public class NotificationFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 notificationList.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+
                     Notification notification = snapshot.getValue(Notification.class);
                     notificationList.add(notification);
+
                 }
 
                 Collections.reverse(notificationList);
