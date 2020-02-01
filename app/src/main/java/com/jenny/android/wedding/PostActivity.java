@@ -41,8 +41,6 @@ public class PostActivity extends AppCompatActivity {
     TextView post;
     EditText description;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +64,7 @@ public class PostActivity extends AppCompatActivity {
         post.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 uploadImage();
             }
         });
@@ -148,8 +147,8 @@ public class PostActivity extends AppCompatActivity {
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             imageUri = result.getUri();
-
             image_added.setImageURI(imageUri);
+
         } else {
             Toast.makeText(this, "Something has gone wrong!", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(PostActivity.this, MainActivity.class));

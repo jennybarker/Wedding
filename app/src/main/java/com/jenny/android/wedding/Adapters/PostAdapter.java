@@ -34,8 +34,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.jenny.android.wedding.CommentsActivity;
 import com.jenny.android.wedding.Fragments.PhotoDetailFragment;
 import com.jenny.android.wedding.Fragments.ProfileFragment;
+import com.jenny.android.wedding.App;
 import com.jenny.android.wedding.R;
-import com.jenny.android.wedding.model.Notification;
 import com.jenny.android.wedding.model.Post;
 import com.jenny.android.wedding.model.User;
 
@@ -265,6 +265,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         hashMap.put("postid", postid);
 
         reference.push().setValue(hashMap);
+
+        App.sendOnNotificationsChannel(mContext);
 
     }
 
