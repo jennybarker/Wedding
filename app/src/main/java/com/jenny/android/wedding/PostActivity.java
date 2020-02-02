@@ -91,13 +91,13 @@ public class PostActivity extends AppCompatActivity {
                     + "." + getFileExtension(imageUri));
 
             uploadTask = filereference.putFile(imageUri);
+
             uploadTask.continueWithTask(new Continuation() {
                 @Override
                 public Object then(@NonNull Task task) throws Exception {
                     if (!task.isSuccessful()){
                         throw task.getException();
                     }
-
                     return filereference.getDownloadUrl();
                 }
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {

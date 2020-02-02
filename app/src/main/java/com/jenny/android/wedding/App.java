@@ -55,11 +55,11 @@ public class App extends Application {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
         Notification notification = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_photos)
+                .setSmallIcon(R.drawable.ic_liked)
                 .setContentTitle("A new photo has been posted!")
                 .setContentText("Check out the wedding photos")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
-                .setContentIntent(pendingIntent)
+                //.setContentIntent(pendingIntent)
                 .build();
 
         notificationManagerCompat.notify(1, notification);

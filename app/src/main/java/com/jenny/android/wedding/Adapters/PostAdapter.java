@@ -1,10 +1,17 @@
 package com.jenny.android.wedding.Adapters;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +24,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,26 +40,63 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.jenny.android.wedding.App;
 import com.jenny.android.wedding.CommentsActivity;
 import com.jenny.android.wedding.Fragments.PhotoDetailFragment;
 import com.jenny.android.wedding.Fragments.ProfileFragment;
-import com.jenny.android.wedding.App;
+import com.jenny.android.wedding.MainActivity;
 import com.jenny.android.wedding.R;
 import com.jenny.android.wedding.model.Post;
 import com.jenny.android.wedding.model.User;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static androidx.core.app.ActivityCompat.requestPermissions;
+
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
+
     public Context mContext;
     public List<Post> mPost;
+    public  OutputStream outputStream;
+
 
     public FirebaseUser firebaseUser;
 
     public PostAdapter(Context mContext, List<Post> mPost) {
         this.mContext = mContext;
         this.mPost = mPost;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+
+        public ImageView image_profile, post_image, like, comment, save, more;
+        public TextView username, likes, publisher, description, comments;
+
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            image_profile = itemView.findViewById(R.id.image_profile);
+            post_image = itemView.findViewById(R.id.post_image);
+            like = itemView.findViewById(R.id.like);
+            comment = itemView.findViewById(R.id.comment);
+            save = itemView.findViewById(R.id.save);
+            username = itemView.findViewById(R.id.username);
+            likes = itemView.findViewById(R.id.likes);
+            publisher = itemView.findViewById(R.id.publisher);
+            description = itemView.findViewById(R.id.description);
+            more = itemView.findViewById(R.id.more);
+            comments = itemView.findViewById(R.id.comments);
+
+
+        }
+
     }
 
     @NonNull
@@ -205,7 +251,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                                         });
                                 return true;
                             case R.id.download:
-                                Toast.makeText(mContext, "Download clicked!", Toast.LENGTH_SHORT).show();
+                                BitmapDrawable downloadimage = (BitmapDrawable) holder.post_image.getDrawable();
+                                if (ContextCompat.checkSelfPermission(mContext, WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED){
+                                    downloadImage(downloadimage);
+                                } else {
+                                   Toast.makeText(mContext, "Wedding app does not have permission to save to your device storage", Toast.LENGTH_SHORT).show();
+                                }
                                 return true;
                             default:
                                 return false;
@@ -229,31 +280,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return mPost.size();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder{
-
-        public ImageView image_profile, post_image, like, comment, save, more;
-        public TextView username, likes, publisher, description, comments;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            image_profile = itemView.findViewById(R.id.image_profile);
-            post_image = itemView.findViewById(R.id.post_image);
-            like = itemView.findViewById(R.id.like);
-            comment = itemView.findViewById(R.id.comment);
-            save = itemView.findViewById(R.id.save);
-            username = itemView.findViewById(R.id.username);
-            likes = itemView.findViewById(R.id.likes);
-            publisher = itemView.findViewById(R.id.publisher);
-            description = itemView.findViewById(R.id.description);
-            more = itemView.findViewById(R.id.more);
-            comments = itemView.findViewById(R.id.comments);
-
-
-        }
-
     }
 
     private void addNotifications(String userid, String postid){
@@ -417,6 +443,62 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         alertDialog.show();
     }
+
+    private void downloadImage(BitmapDrawable postimage){
+
+        Bitmap bitmap = postimage.getBitmap();
+
+        File filepath = Environment.getExternalStorageDirectory();
+        File dir = new File(filepath.getAbsolutePath()+"/Pictures/Wedding");
+        dir.mkdir();
+        File file = new File(dir, System.currentTimeMillis()+".jpg");
+        try {
+            outputStream = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
+            Toast.makeText(mContext, "Image Saved", Toast.LENGTH_SHORT).show();
+
+            try{
+                outputStream.flush();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+
+            try{
+                outputStream.close();
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+
+
+
+        //Toast.makeText(mContext, postimage, Toast.LENGTH_SHORT).show();
+
+       /* StorageReference storageReference = FirebaseStorage.getInstance().getReference("post");
+
+        Uri downloadUri = Uri.parse(postimage);
+        StorageTask downloadTask = storageReference.getFile(downloadUri);
+
+
+        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+
+                downloadfiles();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+
+        */
+    }
+
 
     private void getText(String postid, final EditText editText){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts").child(postid);
