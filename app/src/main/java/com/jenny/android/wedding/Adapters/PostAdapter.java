@@ -448,8 +448,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         Bitmap bitmap = postimage.getBitmap();
 
-        File filepath = Environment.getExternalStorageDirectory();
-        File dir = new File(filepath.getAbsolutePath()+"/Pictures/Wedding");
+        File filepath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File dir = new File(filepath.getAbsolutePath()+"/Wedding");
         dir.mkdir();
         File file = new File(dir, System.currentTimeMillis()+".jpg");
         try {

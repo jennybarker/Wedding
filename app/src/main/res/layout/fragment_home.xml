@@ -3,66 +3,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.HomeFragment"
     android:orientation="vertical">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@android:color/white">
 
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="220dp"
-                    android:layout_height="220dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
-                    android:src="@drawable/jenandmatt"
-                    app:civ_border_color="@color/colorLightBack2"
-                    app:civ_border_width="6dp" />
-
-
-                <TextView
+                <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Jenny and Matt"
-                    android:layout_marginTop = "10dp"
-                    android:textSize="42sp"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorTextDark"
-                    android:fontFamily="@font/clicker_script" />
+                    android:layout_height="250dp"
+                    android:scaleType="fitStart"
+                    android:src="@drawable/couple_image"
+                    android:background="@android:color/white"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/clicker_script"
-                    android:text="22nd August 2020"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorTextDark"
-                    android:textSize="24sp" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Welcome to our wedding!"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
                     android:textSize="14sp"
                     android:textAlignment="center"
-                    android:textColor="@color/colorTextDark" />
+                    android:textColor="@color/colorTextDark"
+                    android:background="@android:color/white"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Thank you so much for celebrating our special day with us"
-                    android:layout_marginBottom = "8dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    android:paddingBottom="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
                     android:textSize="14sp"
                     android:textAlignment="center"
-                    android:textColor="@color/colorTextDark" />
+                    android:textColor="@color/colorTextDark"
+                    android:background="@android:color/white"/>
 
                 <TextView
                     android:layout_width="fill_parent"
