@@ -56,7 +56,7 @@
                     android:background="@color/colorTextLight"></TextView>
 
                 <Button
-                    android:id="@+id/button_ceremony"
+                    android:id="@+id/button_order_of_service"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@android:color/white"

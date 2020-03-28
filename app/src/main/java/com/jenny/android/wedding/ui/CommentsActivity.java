@@ -1,4 +1,4 @@
-package com.jenny.android.wedding;
+package com.jenny.android.wedding.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jenny.android.wedding.Adapters.CommentAdapter;
+import com.jenny.android.wedding.R;
 import com.jenny.android.wedding.model.Comment;
 import com.jenny.android.wedding.model.User;
 import java.util.ArrayList;

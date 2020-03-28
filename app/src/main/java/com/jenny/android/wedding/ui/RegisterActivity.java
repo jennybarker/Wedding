@@ -1,4 +1,4 @@
-package com.jenny.android.wedding;
+package com.jenny.android.wedding.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.jenny.android.wedding.R;
 
 import java.util.HashMap;
 

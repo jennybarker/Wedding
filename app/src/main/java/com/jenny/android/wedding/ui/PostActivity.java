@@ -1,4 +1,4 @@
-package com.jenny.android.wedding;
+package com.jenny.android.wedding.ui;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+import com.jenny.android.wedding.R;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.HashMap;

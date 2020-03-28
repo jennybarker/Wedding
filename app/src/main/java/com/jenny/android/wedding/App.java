@@ -15,6 +15,8 @@ import android.os.Build;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import com.jenny.android.wedding.ui.MainActivity;
+
 public class App extends Application {
 
     public static final String NOTIFICATION_CHANNEL_ID = "com.jenny.android.wedding.channel";

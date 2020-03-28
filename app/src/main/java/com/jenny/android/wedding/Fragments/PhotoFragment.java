@@ -1,8 +1,6 @@
 package com.jenny.android.wedding.Fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,7 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.jenny.android.wedding.Adapters.PostAdapter;
-import com.jenny.android.wedding.PostActivity;
+import com.jenny.android.wedding.ui.PostActivity;
 import com.jenny.android.wedding.R;
 import com.jenny.android.wedding.model.Post;
 

@@ -24,7 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jenny.android.wedding.MainActivity;
+import com.jenny.android.wedding.ui.MainActivity;
 import com.jenny.android.wedding.R;
 import com.jenny.android.wedding.model.Comment;
 import com.jenny.android.wedding.model.User;

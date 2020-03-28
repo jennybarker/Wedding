@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +36,7 @@ public class GuestsFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
 
     EditText search_bar;
+    private ProgressBar progressBar;
 
 
     @Override
@@ -45,6 +47,7 @@ public class GuestsFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
+        progressBar = view.findViewById(R.id.progress_circular);
 
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(getContext());
@@ -113,6 +116,8 @@ public class GuestsFragment extends Fragment {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                         User user = snapshot.getValue(User.class);
                         mUsers.add(user);
+
+                        progressBar.setVisibility(View.GONE);
                     }
 
                     userAdapter.notifyDataSetChanged();

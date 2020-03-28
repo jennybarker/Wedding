@@ -1,4 +1,4 @@
-package com.jenny.android.wedding;
+package com.jenny.android.wedding.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.jenny.android.wedding.R;
 
 public class StartActivity extends AppCompatActivity {
 

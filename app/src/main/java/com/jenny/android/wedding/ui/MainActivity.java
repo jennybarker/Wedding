@@ -1,4 +1,4 @@
-package com.jenny.android.wedding;
+package com.jenny.android.wedding.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,11 +18,11 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.jenny.android.wedding.Fragments.GuestsFragment;
-import com.jenny.android.wedding.Fragments.GamesFragment;
 import com.jenny.android.wedding.Fragments.HomeFragment;
 import com.jenny.android.wedding.Fragments.NotificationFragment;
 import com.jenny.android.wedding.Fragments.PhotoFragment;
 import com.jenny.android.wedding.Fragments.ProfileFragment;
+import com.jenny.android.wedding.R;
 
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 

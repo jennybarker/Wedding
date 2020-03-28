@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.NotificationFragment">
+    android:orientation="vertical"
+    tools:context=".ui.EngagementActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -22,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:text="Notifications"
+                android:text="Engagement"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimaryDark"/>
 
@@ -30,17 +32,32 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <TextView
+        android:layout_below="@+id/bar"
+        android:id="@+id/text_engagement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="We got engaged on 25th June 2019. We were on holiday in the Dominican Republic, sitting on a secluded beach, when Matt asked me to Marry him. It was very romantic and of course I said yes! When we got back home we had an exciting time telling friends and family and celebrating our engagement."
+        android:layout_margin = "20dp"
+        android:textSize="14sp"
+        android:textAlignment="center"
+        android:textColor="@color/colorTextDark" />
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_below="@+id/bar"/>
+        android:layout_below="@+id/text_engagement"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/progress_circular"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
 
 </RelativeLayout>

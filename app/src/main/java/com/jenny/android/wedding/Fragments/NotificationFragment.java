@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,6 +37,7 @@ public class NotificationFragment extends Fragment {
     private NotificationsAdapter notificationsAdapter;
     private List<Notification> notificationList;
 
+    private ProgressBar progressBar;
 
     public NotificationFragment() {
         // Required empty public constructor
@@ -49,6 +51,7 @@ public class NotificationFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
+        progressBar = view.findViewById(R.id.progress_circular);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         notificationList = new ArrayList<>();
@@ -72,6 +75,7 @@ public class NotificationFragment extends Fragment {
 
                     Notification notification = snapshot.getValue(Notification.class);
                     notificationList.add(notification);
+                    progressBar.setVisibility(View.GONE);
 
                 }
 
