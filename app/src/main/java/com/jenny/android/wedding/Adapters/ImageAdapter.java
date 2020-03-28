@@ -1,6 +1,7 @@
 package com.jenny.android.wedding.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,8 @@ import com.bumptech.glide.Glide;
 import com.jenny.android.wedding.Fragments.PhotoDetailFragment;
 import com.jenny.android.wedding.R;
 import com.jenny.android.wedding.model.Post;
+import com.jenny.android.wedding.ui.EngagementActivity;
+import com.jenny.android.wedding.ui.FullImageActivity;
 
 import java.util.List;
 
@@ -47,6 +50,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ViewHolder> 
             @Override
             public void onClick(View view) {
 
+                Intent photointent = new Intent(context, FullImageActivity.class);
+                photointent.putExtra("url", image);
+                view.getContext().startActivity(photointent);
             }
         });
     }

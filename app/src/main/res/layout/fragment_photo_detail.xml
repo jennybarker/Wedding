@@ -15,25 +15,20 @@
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:id="@+id/toolbar"
-            android:background="@color/colorLightBack2">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:background="@color/colorLightBack2"
+            android:layout_gravity="center_horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/post"
                     android:textSize="30sp"
                     android:text="Wedding Photos"
-                    android:layout_centerVertical="true"
-                    android:textColor="@color/colorTextLight"
-                    android:fontFamily="@font/clicker_script"
-                    android:layout_centerHorizontal="true" />
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:gravity="center_horizontal"
+                    android:fontFamily="@font/clicker_script" />
 
-
-            </RelativeLayout>
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>

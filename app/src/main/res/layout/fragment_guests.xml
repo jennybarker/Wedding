@@ -30,7 +30,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/search_bar"
                 android:background="@android:color/transparent"
+                android:paddingLeft="10dp"
                 android:hint="Search..."
+                android:textColorHint="@android:color/white"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"/>
 

@@ -3,15 +3,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="8dp"
-    android:background="@color/colorLightBack1">
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
 
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/image_profile"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/ic_profile"
         app:civ_border_color="@color/colorDarkBack2"
         app:civ_border_width="2dp"/>
 
@@ -30,5 +37,14 @@
             android:textColor="@color/colorTextDark"
             android:layout_gravity="center"
             android:gravity="center"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorLightBack1">
+
+    </View>
 
 </LinearLayout>
