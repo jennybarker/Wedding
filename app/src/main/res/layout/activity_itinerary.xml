@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -35,4 +35,451 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-</LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/bar"
+        android:layout_centerHorizontal="true">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:text="1:00 pm"
+                android:fontFamily="@font/clicker_script"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/purple_flower"
+                android:layout_gravity="center"
+                android:layout_margin="10dp">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Ceremony"
+                android:fontFamily="@font/clicker_script"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:text="2:00 pm"
+                android:fontFamily="@font/clicker_script"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/purple_flower"
+                android:layout_gravity="center"
+                android:layout_margin="10dp">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Church Photos"
+                android:fontFamily="@font/clicker_script"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:text="3:00 pm"
+                android:fontFamily="@font/clicker_script"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/purple_flower"
+                android:layout_gravity="center"
+                android:layout_margin="10dp">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Drinks Reception"
+                android:fontFamily="@font/clicker_script"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:text="4:30 pm"
+                android:fontFamily="@font/clicker_script"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/purple_flower"
+                android:layout_gravity="center"
+                android:layout_margin="10dp">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Wedding Breakfast"
+                android:fontFamily="@font/clicker_script"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:text="6:30 pm"
+                android:fontFamily="@font/clicker_script"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/purple_flower"
+                android:layout_gravity="center"
+                android:layout_margin="10dp">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Break"
+                android:fontFamily="@font/clicker_script"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:text="7:00 pm"
+                android:fontFamily="@font/clicker_script"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/purple_flower"
+                android:layout_gravity="center"
+                android:layout_margin="10dp">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Evening Reception"
+                android:fontFamily="@font/clicker_script"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:text="7:30 pm"
+                android:fontFamily="@font/clicker_script"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/purple_flower"
+                android:layout_gravity="center"
+                android:layout_margin="10dp">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Ceilidh Dancing"
+                android:fontFamily="@font/clicker_script"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:text="8:15 pm"
+                android:fontFamily="@font/clicker_script"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/purple_flower"
+                android:layout_gravity="center"
+                android:layout_margin="10dp">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Break"
+                android:fontFamily="@font/clicker_script"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:text="8:45 pm"
+                android:fontFamily="@font/clicker_script"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/purple_flower"
+                android:layout_gravity="center"
+                android:layout_margin="10dp">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Ceilidh Dancing"
+                android:fontFamily="@font/clicker_script"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:text="9:30 pm"
+                android:fontFamily="@font/clicker_script"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/purple_flower"
+                android:layout_gravity="center"
+                android:layout_margin="10dp">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Disco"
+                android:fontFamily="@font/clicker_script"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:text="12:00 pm"
+                android:fontFamily="@font/clicker_script"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/purple_flower"
+                android:layout_gravity="center"
+                android:layout_margin="10dp">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Carriages"
+                android:fontFamily="@font/clicker_script"
+                android:textSize="28sp"
+                android:textColor="@color/colorPrimaryDark">
+
+            </TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

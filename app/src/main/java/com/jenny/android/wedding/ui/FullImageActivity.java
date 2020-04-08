@@ -26,6 +26,6 @@ public class FullImageActivity extends AppCompatActivity {
 
         ImageView imageView = (ImageView) findViewById(R.id.full_image);
         Glide.with(getBaseContext()).load(url).into(imageView);
-        
+
     }
 }
