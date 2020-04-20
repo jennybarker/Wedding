@@ -18,16 +18,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.jenny.android.wedding.R;
 
 import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText username, fullname, email, password;
-    Button register;
+    EditText username, fullname, email, password, wedding_code;
+    Button register, submit_code;
     TextView txt_login;
 
     FirebaseAuth auth;
@@ -40,14 +43,47 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        wedding_code = findViewById(R.id.wedding_code);
         username = findViewById(R.id.username);
         fullname = findViewById(R.id.fullname);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         register = findViewById(R.id.register);
+        submit_code = findViewById(R.id.submit_code);
         txt_login = findViewById(R.id.txt_login);
 
         auth = FirebaseAuth.getInstance();
+
+        username.setVisibility(View.GONE);
+        fullname.setVisibility(View.GONE);
+        email.setVisibility(View.GONE);
+        password.setVisibility(View.GONE);
+        register.setVisibility(View.GONE);
+        wedding_code.setVisibility(View.VISIBLE);
+        submit_code.setVisibility(View.VISIBLE);
+
+
+        submit_code.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("WeddingCode");
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String WeddingCode = dataSnapshot.getValue().toString();
+                        checkCode(WeddingCode);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+        });
 
 
         txt_login.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +119,23 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void checkCode(String WeddingCode){
+
+        String userCodeInput = wedding_code.getText().toString();
+        if(userCodeInput.equals(WeddingCode)){
+
+            username.setVisibility(View.VISIBLE);
+            fullname.setVisibility(View.VISIBLE);
+            email.setVisibility(View.VISIBLE);
+            password.setVisibility(View.VISIBLE);
+            register.setVisibility(View.VISIBLE);
+            wedding_code.setVisibility(View.GONE);
+            submit_code.setVisibility(View.GONE);
+
+        }
 
     }
 

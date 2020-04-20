@@ -29,13 +29,23 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         final Button OrderOfService = view.findViewById(R.id.button_order_of_service);
+        OrderOfService.setVisibility(View.GONE);
+
         Button WeddingBreakfast = view.findViewById(R.id.button_breakfast);
+
         Button WeddingParty = view.findViewById(R.id.button_wedding_party);
+
         final Button Itinerary = view.findViewById(R.id.button_itinerary);
+
         Button Engagement = view.findViewById(R.id.button_engagement);
+
         Button OurStory = view.findViewById(R.id.button_story);
+
         Button HenParty = view.findViewById(R.id.button_hen);
+        HenParty.setVisibility(View.GONE);
+
         Button StagParty = view.findViewById(R.id.button_stag);
+        StagParty.setVisibility(View.GONE);
 
         OrderOfService.setOnClickListener(new View.OnClickListener() {
             @Override

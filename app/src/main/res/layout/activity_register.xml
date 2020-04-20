@@ -25,6 +25,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_background"
+            android:hint="Wedding Code"
+            android:layout_marginTop="15dp"
+            android:id="@+id/wedding_code"
+            android:padding="10dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/submit_code"
+            android:text="Submit Code"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/clicker_script"
+            android:textSize="20sp"
+            android:textColor="@color/colorDarkBack2"
+            android:background="@drawable/button_background"
+            android:foreground="?attr/selectableItemBackground"
+            android:padding="10dp"/>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
             android:hint="Username"
             android:layout_marginTop="15dp"
             android:id="@+id/username"
