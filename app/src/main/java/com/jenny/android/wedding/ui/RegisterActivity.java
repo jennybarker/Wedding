@@ -23,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.jenny.android.wedding.PrivacyPolicyActivity;
 import com.jenny.android.wedding.R;
 
 import java.util.HashMap;
@@ -31,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText username, fullname, email, password, wedding_code;
     Button register, submit_code;
-    TextView txt_login;
+    TextView txt_login, txt_privacy_policy, txt_terms_conditions;
 
     FirebaseAuth auth;
     DatabaseReference reference;
@@ -51,6 +52,8 @@ public class RegisterActivity extends AppCompatActivity {
         register = findViewById(R.id.register);
         submit_code = findViewById(R.id.submit_code);
         txt_login = findViewById(R.id.txt_login);
+        txt_privacy_policy = findViewById(R.id.txt_privacy_policy);
+        txt_terms_conditions = findViewById(R.id.txt_terms_conditions);
 
         auth = FirebaseAuth.getInstance();
 
@@ -92,6 +95,15 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             }
         });
+
+        txt_privacy_policy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RegisterActivity.this, PrivacyPolicyActivity.class));
+            }
+        });
+
+
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override

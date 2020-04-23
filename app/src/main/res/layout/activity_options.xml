@@ -19,20 +19,6 @@
             android:id="@+id/toolbar"
             android:background="@color/colorLightBack2"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorAccent"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/settings"
-            android:text="Settings"
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_margin="8dp"
-            android:textSize="18sp"/>
-
 
         <View
             android:layout_width="match_parent"
@@ -44,6 +30,34 @@
             android:layout_height="wrap_content"
             android:id="@+id/logout"
             android:text="Log Out"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_margin="8dp"
+            android:textSize="18sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/privacy_policy"
+            android:text="Privacy Policy"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_margin="8dp"
+            android:textSize="18sp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorAccent"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/terms_conditions"
+            android:text="Terms and Conditions"
             android:textColor="@color/colorPrimaryDark"
             android:layout_margin="8dp"
             android:textSize="18sp"/>

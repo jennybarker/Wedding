@@ -161,16 +161,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
 
-        holder.post_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SharedPreferences.Editor editor = mContext.getSharedPreferences("PREFS", Context.MODE_PRIVATE).edit();
-                editor.putString("postid", post.getPostid());
-                editor.apply();
-
-                ((FragmentActivity)mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new PhotoDetailFragment()).addToBackStack(null).commit();
-            }
-        });
 
         holder.save.setOnClickListener(new View.OnClickListener() {
             @Override

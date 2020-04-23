@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,23 +44,14 @@ public class PhotoFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_photo, container, false);
 
-        ImageView add_image_button = view.findViewById(R.id.add_image);
-        ImageView notification_button = view.findViewById(R.id.notifications);
+        FloatingActionButton add_image_floating_button = view.findViewById(R.id.add_image_floating_button);
         progressBar = view.findViewById(R.id.progress_circular);
 
-        add_image_button.setOnClickListener(new View.OnClickListener() {
+        add_image_floating_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getContext(), PostActivity.class);
                 startActivity(i);
-            }
-        });
-
-        notification_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                ((FragmentActivity)getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new NotificationFragment()).addToBackStack(null).commit();
             }
         });
 
