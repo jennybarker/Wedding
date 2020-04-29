@@ -6,8 +6,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +33,7 @@ public class OurStoryActivity extends AppCompatActivity {
     List<Story> storyList;
 
     private ProgressBar progressBar;
+    private LinearLayout noInternetMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +43,23 @@ public class OurStoryActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         progressBar = findViewById(R.id.progress_circular);
+        noInternetMessage = findViewById(R.id.no_internet_message);
+        noInternetMessage.setVisibility(View.GONE);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getBaseContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         storyList = new ArrayList<>();
         storyAdapter = new StoryAdapter(getBaseContext(), storyList);
         recyclerView.setAdapter(storyAdapter);
 
-        getStoryEvents();
+        if(isNetworkAvailable(getBaseContext())){
+
+            getStoryEvents();
+
+        } else {
+            progressBar.setVisibility(View.GONE);
+            noInternetMessage.setVisibility(View.VISIBLE);
+        }
+
 
     }
 
@@ -73,5 +87,10 @@ public class OurStoryActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 }

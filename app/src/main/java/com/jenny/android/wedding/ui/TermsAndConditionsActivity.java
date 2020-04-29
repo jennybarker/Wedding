@@ -1,4 +1,4 @@
-package com.jenny.android.wedding;
+package com.jenny.android.wedding.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class PrivacyPolicyActivity extends AppCompatActivity {
+import com.jenny.android.wedding.R;
+
+public class TermsAndConditionsActivity extends AppCompatActivity {
 
     TextView google_play_services_link;
     TextView google_firebase_link;
@@ -16,7 +18,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_privacy_policy);
+        setContentView(R.layout.activity_terms_and_conditions);
 
         google_play_services_link = findViewById(R.id.google_play_services_link);
         google_firebase_link = findViewById(R.id.google_firebase_link);
@@ -42,7 +44,5 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
     }
 }

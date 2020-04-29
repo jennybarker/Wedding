@@ -1,6 +1,8 @@
 package com.jenny.android.wedding.Fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -36,6 +39,7 @@ public class PhotoFragment extends Fragment {
     private List<Post> postList;
 
     private ProgressBar progressBar;
+    private LinearLayout noInternetMessage;
 
 
     @Override
@@ -46,6 +50,8 @@ public class PhotoFragment extends Fragment {
 
         FloatingActionButton add_image_floating_button = view.findViewById(R.id.add_image_floating_button);
         progressBar = view.findViewById(R.id.progress_circular);
+        noInternetMessage = view.findViewById(R.id.no_internet_message);
+        noInternetMessage.setVisibility(View.GONE);
 
         add_image_floating_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +71,17 @@ public class PhotoFragment extends Fragment {
         postAdapter = new PostAdapter(getContext(), postList);
         recyclerView.setAdapter(postAdapter);
 
-        readPosts();
+        if (isNetworkAvailable(getContext())){
+
+            readPosts();
+
+        } else {
+
+            progressBar.setVisibility(View.GONE);
+            noInternetMessage.setVisibility(View.VISIBLE);
+
+        }
+
 
         // Inflate the layout for this fragment
         return view;
@@ -74,8 +90,6 @@ public class PhotoFragment extends Fragment {
     private void readPosts() {
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Posts");
-
-
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -97,6 +111,11 @@ public class PhotoFragment extends Fragment {
             }
         });
 
+    }
+
+    public boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
 

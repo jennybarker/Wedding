@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.TermsAndConditionsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Terms and Conditions"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="These are the terms and conditions of use of Jenny and Matt’s Wedding application. The android application is operated by Jennifer Barker. By downloading or using the app, these terms will automatically apply to you. Therefore, you should make sure you have read them carefully before using the application. "
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="These terms govern your access to and use of the services. If you want to use the application you have to agree to these terms and you acknowledge that these terms form a legally-binding contract between Jennifer Barker and you. If you do not want to be bound by these terms, then you should not use the application or service. "
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Jennifer Barker is committed to ensuring that the app is as useful and efficient as possible. For that reason, I reserve the right to make changes to the app or to charge for its services, at any time and for any reason. We will never charge you for the app or its services without making it very clear to you exactly what you’re paying for."
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="These terms and conditions were last updated on 29th April 2020."
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="The service"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Jenny and Matt's Wedding App is a service for wedding guests to share their photos and memories of the event. Users will also view wedding information about the couple and the day such as engagement photos of the couple, photos of the wedding party, itinerary of the day, the wedding breakfast etc. It is currently free for the weddings guests to register and gain access to the application. User will be able to gain access if they have been given the ‘wedding code’ from the wedding couple. "
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="I do not control the material submitted to the application by users. Therefore, I ask that the photos submitted are appropriate and associated with the wedding of Jenny and Matt."
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Intellectual property rights"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="All intellectual property rights in any content of the application (Including graphics, software, photographs and other images, trademarks, and logos) are owned by me or our licensors (for example photographers who have granted me permission to use their images or free source material provided by google and other third parties). You do not acquire any ownership rights by downloading content from the application.  You are not allowed to copy, or modify the application, any part of the application, or my trademarks in any way. You are not allowed to attempt to extract the source code of the application, and you also should not try to translate the application into other languages, or make derivative versions. The application itself, and all the trademarks, copyright, database rights and other intellectual property rights related to it, still belong to Jennifer Barker."
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Third-party providers"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="The app does use third party services that may collect information used to identify you.
+Link to privacy policy of third-party service providers used by the app:"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/google_play_services_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Google Play Services"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:id="@+id/google_firebase_link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Google Firebase"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="I want to inform users of this application that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on my behalf. However, they are obligated not to disclose or use the information for any other purpose."
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Registration"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="In order the access and use Jenny and Matt’s Wedding App you must register with and open an account with us. In doing so please make sure that all of the details that you give to us are accurate and complete, and are kept current and up-to-date whilst you continue to use the application. You must contact me promptly to inform us of all changes to this information. Jenny and Matt’s Wedding App stores and processes personal data that you have provided to us, in order to provide it’s Service. It’s your responsibility to keep your phone and access to the app secure. We therefore recommend that you do not jailbreak or root your phone, which is the process of removing software restrictions and limitations imposed by the official operating system of your device. It could make your phone vulnerable to malware/viruses/malicious programs, compromise your phone’s security features and it could mean that Jenny and Matt's Wedding App will not work properly or at all."
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Username and password"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Upon registration for an account with us, you will be asked to create a username and password. You must keep your account information confidential at all times and use it only to access and use your account and not for any other purpose. You are the only authorised user of your account, unless expressly specified otherwise. You should contact me immediately upon discovering any unauthorised use of your account or error in the operation of your username and password. Usernames and passwords are our property and we reserve the right to alter or replace them at any time in our sole discretion. "
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="What you are allowed to do"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="You may only use the application for non-commercial use and only in accordance with these terms and conditions. You may retrieve and display content form the application on a device screen. Images that guests choose to share on the application can be saved to your device. Equally images you choose to share on the application can be downloaded by other guests who have registered an account.  "
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="What you are not allowed to do"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="You may not store pages of or datasets from the application on a server or other storage device connected to a network."
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Do not create links to the application from another source or website without prior written consent. "
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Do not inject or subject the application to any adware, malware or viruses."
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Do not create a copy of this application.Do not create a copy of this application."
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Do not attempt to access the service database or backend storage, user information, passwords or other records relating to the application."
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Do not attempt to modify, translate, adapt, edit, decompile, disassemble, or reverse engineer any software programs used by Jennifer Barker in connection with the application; and reproduce, duplicate or copy content, look and feel, pictures, or any of our other copyright works and intellectual property. "
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Connection and access "
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Certain functions of the app will require the app to have an active internet connection. The connection can be Wi-Fi, or provided by your mobile network provider, but Jennifer Barker cannot take responsibility for the app not working at full functionality if you don’t have access to Wi-Fi, and you don’t have any of your data allowance left."
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="If you’re using the app outside of an area with Wi-Fi, you should remember that your terms of the agreement with your mobile network provider will still apply. As a result, you may be charged by your mobile provider for the cost of data for the duration of the connection while accessing the app, or other third-party charges. In using the app, you’re accepting responsibility for any such charges, including roaming data charges if you use the app outside of your home territory (i.e. region or country) without turning off data roaming. If you are not the bill payer for the device on which you’re using the app, please be aware that we assume that you have received permission from the bill payer for using the app."
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Application updates"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="At some point, Jennifer Barker may wish to update the application. The application is currently available on Android – the requirements for system (and for any additional systems we decide to extend the availability of the application to) may change, and you’ll need to download the updates if you want to keep using the application. Jennifer Barker does not promise that it will always update the application so that it is relevant to you and/or works with the Android version that you have installed on your device. However, you promise to always accept updates to the application when offered to you, we may also wish to stop providing the application, and may terminate use of it at any time without giving notice of termination to you. Unless we tell you otherwise, upon any termination, (a) the rights and licenses granted to you in these terms will end; (b) you must stop using the app, and (if needed) delete it from your device."
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Jennifer Barker cannot take responsibility for the way you use the application. You need to make sure that your device meets all the necessary technical specifications to enable you to access and use the application. I do not guarantee the continuous, uninterrupted or error-free operability of the application. "
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="When you are using the application, it’s important to consider that although I endeavour to ensure that it is updated and correct at all times, I do rely on third parties to provide information to us so that I can make it available to you. Jennifer Barker accepts no liability for any loss, direct or indirect, you experience as a result of relying wholly on this functionality of the application."
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Your personal information"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Use of your personal information submitted to my application is governed by my privacy policy. If you choose to use my Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that I collect is used for providing and improving the Service. I will not use or share your information with anyone except as described in this Privacy Policy. Your privacy is very important to me and was a great consideration during the development process of this application. The privacy notice tells you how I look after your personal data when you use my application or otherwise communicate with me. "
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="Contact details"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="If you need to get hold of me regarding your use of this application, please email me at Jennifer.barker1606@gmail.com."
+                android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

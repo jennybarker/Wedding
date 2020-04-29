@@ -23,7 +23,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jenny.android.wedding.PrivacyPolicyActivity;
 import com.jenny.android.wedding.R;
 
 import java.util.HashMap;
@@ -100,6 +99,13 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(RegisterActivity.this, PrivacyPolicyActivity.class));
+            }
+        });
+
+        txt_terms_conditions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RegisterActivity.this, TermsAndConditionsActivity.class));
             }
         });
 

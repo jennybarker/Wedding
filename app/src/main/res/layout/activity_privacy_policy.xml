@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PrivacyPolicyActivity">
+    tools:context=".ui.PrivacyPolicyActivity">
 
     <ScrollView
         android:layout_width="match_parent"

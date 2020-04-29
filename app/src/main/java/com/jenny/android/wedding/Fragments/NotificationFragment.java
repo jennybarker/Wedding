@@ -1,6 +1,7 @@
 package com.jenny.android.wedding.Fragments;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,6 +40,7 @@ public class NotificationFragment extends Fragment {
     private List<Notification> notificationList;
 
     private ProgressBar progressBar;
+    private LinearLayout noInternetMessage;
 
     public NotificationFragment() {
         // Required empty public constructor
@@ -52,13 +55,21 @@ public class NotificationFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         progressBar = view.findViewById(R.id.progress_circular);
+        noInternetMessage = view.findViewById(R.id.no_internet_message);
+        noInternetMessage.setVisibility(View.GONE);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         notificationList = new ArrayList<>();
         notificationsAdapter = new NotificationsAdapter(getContext(), notificationList);
         recyclerView.setAdapter(notificationsAdapter);
 
-        readNotifications();
+        if(isNetworkAvailable(getContext())){
+            readNotifications();
+        } else {
+            progressBar.setVisibility(View.GONE);
+            noInternetMessage.setVisibility(View.VISIBLE);
+        }
+
 
         return view;
     }
@@ -89,6 +100,11 @@ public class NotificationFragment extends Fragment {
             }
         });
 
+    }
+
+    public boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
 }

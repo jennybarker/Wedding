@@ -1,5 +1,7 @@
 package com.jenny.android.wedding.Fragments;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.google.firebase.database.DataSnapshot;
@@ -37,6 +40,7 @@ public class GuestsFragment extends Fragment {
 
     EditText search_bar;
     private ProgressBar progressBar;
+    private LinearLayout noInternetMessage;
 
 
     @Override
@@ -48,6 +52,8 @@ public class GuestsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         progressBar = view.findViewById(R.id.progress_circular);
+        noInternetMessage = view.findViewById(R.id.no_internet_message);
+        noInternetMessage.setVisibility(View.GONE);
 
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(getContext());
@@ -59,7 +65,13 @@ public class GuestsFragment extends Fragment {
         userAdapter = new UserAdapter(getContext(), mUsers);
         recyclerView.setAdapter(userAdapter);
 
-        readUsers();
+        if(isNetworkAvailable(getContext())){
+            readUsers();
+        } else {
+            progressBar.setVisibility(View.GONE);
+            noInternetMessage.setVisibility(View.VISIBLE);
+        }
+
         search_bar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -129,5 +141,10 @@ public class GuestsFragment extends Fragment {
 
             }
         });
+    }
+
+    public boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 }

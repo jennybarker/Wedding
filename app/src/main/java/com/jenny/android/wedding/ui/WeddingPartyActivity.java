@@ -3,8 +3,12 @@ package com.jenny.android.wedding.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
@@ -16,19 +20,37 @@ import com.jenny.android.wedding.R;
 
 public class WeddingPartyActivity extends AppCompatActivity {
 
+    private LinearLayout noInternetMessage;
+    private LinearLayout weddingPartyLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wedding_party);
 
-        getImageBex();
-        getImageBecky();
-        getImageJo();
-        getImageEllie();
-        getImageAndy();
-        getImageRoss();
-        getImageStephen();
-        getImageRichard();
+        noInternetMessage = findViewById(R.id.no_internet_message);
+        noInternetMessage.setVisibility(View.GONE);
+        weddingPartyLayout = findViewById(R.id.wedding_party_layout);
+
+
+        if(isNetworkAvailable(getApplicationContext())){
+            getImageBex();
+            getImageBecky();
+            getImageJo();
+            getImageEllie();
+            getImageAndy();
+            getImageRoss();
+            getImageStephen();
+            getImageRichard();
+            weddingPartyLayout.setVisibility(View.VISIBLE);
+
+        } else {
+
+            noInternetMessage.setVisibility(View.VISIBLE);
+            weddingPartyLayout.setVisibility(View.GONE);
+        }
+
+
 
     }
 
@@ -214,6 +236,11 @@ public class WeddingPartyActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
 }

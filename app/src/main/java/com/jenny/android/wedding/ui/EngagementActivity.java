@@ -6,11 +6,14 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
@@ -40,6 +43,7 @@ public class EngagementActivity extends AppCompatActivity {
     List<String> gallaryList;
 
     private ProgressBar progressBar;
+    private LinearLayout noInternetMessage;
 
 
     @Override
@@ -50,13 +54,21 @@ public class EngagementActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         progressBar = findViewById(R.id.progress_circular);
+        noInternetMessage = findViewById(R.id.no_internet_message);
+        noInternetMessage.setVisibility(View.GONE);
         LinearLayoutManager linearLayoutManager = new GridLayoutManager(getBaseContext(), 2);
         recyclerView.setLayoutManager(linearLayoutManager);
         gallaryList = new ArrayList<>();
         imageAdapter = new ImageAdapter(getBaseContext(), gallaryList);
         recyclerView.setAdapter(imageAdapter);
 
-        getEngagementPhotos();
+        if(isNetworkAvailable(getBaseContext())){
+            getEngagementPhotos();
+        } else {
+            progressBar.setVisibility(View.GONE);
+            noInternetMessage.setVisibility(View.VISIBLE);
+        }
+
 
 
     }
@@ -85,6 +97,11 @@ public class EngagementActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean isNetworkAvailable(Context context) {
+        ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 
 }

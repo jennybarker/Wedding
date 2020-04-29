@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.jenny.android.wedding.PrivacyPolicyActivity;
 import com.jenny.android.wedding.R;
 
 public class OptionsActivity extends AppCompatActivity {
@@ -49,6 +48,14 @@ public class OptionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(OptionsActivity.this, PrivacyPolicyActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            }
+        });
+
+        terms_conditions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(OptionsActivity.this, TermsAndConditionsActivity.class)
                         .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
