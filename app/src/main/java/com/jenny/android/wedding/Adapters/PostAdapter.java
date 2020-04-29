@@ -1,6 +1,7 @@
 package com.jenny.android.wedding.Adapters;
 
 import android.app.AlertDialog;
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,7 +9,9 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -235,9 +238,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                                         });
                                 return true;
                             case R.id.download:
+                                String url = post.getPostimage();
                                 BitmapDrawable downloadimage = (BitmapDrawable) holder.post_image.getDrawable();
                                 if (ContextCompat.checkSelfPermission(mContext, WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED){
-                                    downloadImage(downloadimage);
+                                    downloadImage(downloadimage, url);
                                 } else {
                                    Toast.makeText(mContext, "Wedding app does not have permission to save to your device storage", Toast.LENGTH_SHORT).show();
                                 }
@@ -428,59 +432,37 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         alertDialog.show();
     }
 
-    private void downloadImage(BitmapDrawable postimage){
+    private void downloadImage(BitmapDrawable postimage, String url) {
 
-        Bitmap bitmap = postimage.getBitmap();
+        String filename = System.currentTimeMillis() + ".jpg";
+        String downloadUrlOfImage = url;
+        File direct =
+                new File(Environment
+                        .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                        .getAbsolutePath() + "/" + "Wedding" + "/");
 
-        File filepath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        File dir = new File(filepath.getAbsolutePath()+"/Wedding");
-        dir.mkdir();
-        File file = new File(dir, System.currentTimeMillis()+".jpg");
-        try {
-            outputStream = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-            Toast.makeText(mContext, "Image Saved", Toast.LENGTH_SHORT).show();
 
-            try{
-                outputStream.flush();
-            } catch (IOException e){
-                e.printStackTrace();
-            }
-
-            try{
-                outputStream.close();
-            } catch (IOException e){
-                e.printStackTrace();
-            }
-
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
+        if (!direct.exists()) {
+            direct.mkdir();
         }
 
+        try {
+        DownloadManager dm = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
+        Uri downloadUri = Uri.parse(downloadUrlOfImage);
+        DownloadManager.Request request = new DownloadManager.Request(downloadUri);
+        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE)
+                .setAllowedOverRoaming(false)
+                .setTitle(filename)
+                .setMimeType("image/jpeg")
+                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                .setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES,
+                        File.separator + "Wedding" + File.separator + filename);
 
-
-        //Toast.makeText(mContext, postimage, Toast.LENGTH_SHORT).show();
-
-       /* StorageReference storageReference = FirebaseStorage.getInstance().getReference("post");
-
-        Uri downloadUri = Uri.parse(postimage);
-        StorageTask downloadTask = storageReference.getFile(downloadUri);
-
-
-        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-
-                downloadfiles();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-            }
-        });
-
-        */
+        dm.enqueue(request);
+        Toast.makeText(mContext, "Image downloaded", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(mContext, "Image could not be downloaded", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
