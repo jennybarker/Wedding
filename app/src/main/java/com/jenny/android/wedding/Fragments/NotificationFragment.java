@@ -53,6 +53,7 @@ public class NotificationFragment extends Fragment {
 
     private ProgressBar progressBar;
     private LinearLayout noInternetMessage;
+    private LinearLayout noNotificationsMessage;
 
     public static final String CHANNEL_ID = "wedding_channel";
     private static final String CHANNEL_NAME = "Wedding Channel";
@@ -74,6 +75,8 @@ public class NotificationFragment extends Fragment {
         progressBar = view.findViewById(R.id.progress_circular);
         noInternetMessage = view.findViewById(R.id.no_internet_message);
         noInternetMessage.setVisibility(View.GONE);
+        noNotificationsMessage = view.findViewById(R.id.no_notifications_message);
+        noNotificationsMessage.setVisibility(View.GONE);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         notificationList = new ArrayList<>();
@@ -89,7 +92,9 @@ public class NotificationFragment extends Fragment {
         }
 
         if(isNetworkAvailable(getContext())){
-            readNotifications();
+
+            notificationsExist();
+
         } else {
             progressBar.setVisibility(View.GONE);
             noInternetMessage.setVisibility(View.VISIBLE);
@@ -99,6 +104,27 @@ public class NotificationFragment extends Fragment {
         return view;
     }
 
+    private void notificationsExist(){
+        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Notifications");
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChild(firebaseUser.getUid())){
+                    readNotifications();
+                } else {
+                    noNotificationsMessage.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 
     private void readNotifications(){
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -108,10 +134,14 @@ public class NotificationFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 notificationList.clear();
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                    Notification notification = snapshot.getValue(Notification.class);
-                    notificationList.add(notification);
+                    if (snapshot.exists()) {
+                        Notification notification = snapshot.getValue(Notification.class);
+                        notificationList.add(notification);
+                    } else {
+                        noNotificationsMessage.setVisibility(View.VISIBLE);
+                    }
                     progressBar.setVisibility(View.GONE);
                 }
 
@@ -125,7 +155,6 @@ public class NotificationFragment extends Fragment {
 
             }
         });
-
     }
 
     public boolean isNetworkAvailable(Context context) {
