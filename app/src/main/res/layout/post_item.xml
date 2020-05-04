@@ -50,8 +50,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                app:layout_constraintDimensionRatio="4:6"
+                android:layout_height="wrap_content"
                 android:id="@+id/post_image"
                 tools:ignore="MissingConstraints" />
 

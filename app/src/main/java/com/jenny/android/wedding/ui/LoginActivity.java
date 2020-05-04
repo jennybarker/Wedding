@@ -23,7 +23,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.jenny.android.wedding.R;
+
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -32,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView txt_signup;
 
     FirebaseAuth auth;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,19 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+            @Override
+            public void onComplete(@NonNull Task< InstanceIdResult > task) {
+                if(task.isSuccessful()){
+
+                    token  = task.getResult().getToken();
+
+                } else {
+
+                }
             }
         });
 
@@ -74,13 +92,13 @@ public class LoginActivity extends AppCompatActivity {
                                                 .child(auth.getCurrentUser().getUid());
 
                                         reference.addValueEventListener(new ValueEventListener() {
-                                            TextView test;
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 pd.dismiss();
                                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                 startActivity(intent);
+                                                updatetokenID(auth.getCurrentUser().getUid());
                                                 finish();
                                             }
 
@@ -102,5 +120,23 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void updatetokenID(String userid){
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Users").child(userid).child("token");
+
+        reference.setValue(token).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+
+                } else {
+
+                }
+            }
+        });
+
     }
 }

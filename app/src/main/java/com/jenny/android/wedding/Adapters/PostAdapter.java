@@ -7,11 +7,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,18 +37,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jenny.android.wedding.App;
 import com.jenny.android.wedding.ui.CommentsActivity;
-import com.jenny.android.wedding.Fragments.PhotoDetailFragment;
 import com.jenny.android.wedding.Fragments.ProfileFragment;
 import com.jenny.android.wedding.R;
 import com.jenny.android.wedding.model.Post;
 import com.jenny.android.wedding.model.User;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -275,12 +268,10 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("userid", firebaseUser.getUid());
-        hashMap.put("text", "liked your post");
+        hashMap.put("text", " liked your wedding photo!");
         hashMap.put("postid", postid);
 
         reference.push().setValue(hashMap);
-
-        App.sendOnNotificationsChannel(mContext);
 
     }
 

@@ -1,11 +1,16 @@
 package com.jenny.android.wedding.Fragments;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +20,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +31,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.jenny.android.wedding.Adapters.NotificationsAdapter;
 import com.jenny.android.wedding.R;
 import com.jenny.android.wedding.model.Notification;
@@ -31,6 +41,8 @@ import com.jenny.android.wedding.model.Post;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static com.jenny.android.wedding.NotificationHelper.displayNotification;
 
 
 public class NotificationFragment extends Fragment {
@@ -41,6 +53,11 @@ public class NotificationFragment extends Fragment {
 
     private ProgressBar progressBar;
     private LinearLayout noInternetMessage;
+
+    public static final String CHANNEL_ID = "wedding_channel";
+    private static final String CHANNEL_NAME = "Wedding Channel";
+    private static final String CHANNEL_DESC = "Wedding Channel Notifications";
+
 
     public NotificationFragment() {
         // Required empty public constructor
@@ -63,6 +80,14 @@ public class NotificationFragment extends Fragment {
         notificationsAdapter = new NotificationsAdapter(getContext(), notificationList);
         recyclerView.setAdapter(notificationsAdapter);
 
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
+            channel.setDescription(CHANNEL_DESC);
+            NotificationManager manager = getContext().getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+
         if(isNetworkAvailable(getContext())){
             readNotifications();
         } else {
@@ -73,6 +98,7 @@ public class NotificationFragment extends Fragment {
 
         return view;
     }
+
 
     private void readNotifications(){
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -87,11 +113,11 @@ public class NotificationFragment extends Fragment {
                     Notification notification = snapshot.getValue(Notification.class);
                     notificationList.add(notification);
                     progressBar.setVisibility(View.GONE);
-
                 }
 
                 Collections.reverse(notificationList);
                 notificationsAdapter.notifyDataSetChanged();
+
             }
 
             @Override

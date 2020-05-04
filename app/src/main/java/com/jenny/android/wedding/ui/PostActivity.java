@@ -7,10 +7,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.view.animation.RotateAnimation;
 import android.webkit.MimeTypeMap;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,6 +33,7 @@ import com.google.firebase.storage.StorageTask;
 import com.jenny.android.wedding.R;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class PostActivity extends AppCompatActivity {
@@ -41,6 +46,12 @@ public class PostActivity extends AppCompatActivity {
     ImageView close, image_added;
     TextView post;
     EditText description;
+    Button rotate_image;
+    // request code
+    private final int PICK_IMAGE_REQUEST = 22;
+    // Uri indicates, where the image will be picked from
+    private Uri filePath;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +62,7 @@ public class PostActivity extends AppCompatActivity {
         image_added = findViewById(R.id.image_added);
         post = findViewById(R.id.post);
         description = findViewById(R.id.description);
+        rotate_image = findViewById(R.id.button_rotate_image);
 
         storageReference = FirebaseStorage.getInstance().getReference("post");
 
@@ -70,9 +82,15 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
-        CropImage.activity()
-                .setAspectRatio(4, 6)
-                .start(PostActivity.this);
+        SelectImage();
+
+
+        rotate_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                image_added.setRotation(image_added.getRotation() - 90);
+            }
+        });
     }
 
     private String getFileExtension(Uri uri){
@@ -82,16 +100,72 @@ public class PostActivity extends AppCompatActivity {
         return mime.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
+    // Select Image method
+    private void SelectImage()
+    {
+
+        // Defining Implicit Intent to mobile gallery
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(
+                Intent.createChooser(
+                        intent,
+                        "Select Image from here..."),
+                PICK_IMAGE_REQUEST);
+    }
+
+    // Override onActivityResult method
+    @Override
+    protected void onActivityResult(int requestCode,
+                                    int resultCode,
+                                    Intent data)
+    {
+
+        super.onActivityResult(requestCode,
+                resultCode,
+                data);
+
+        // checking request code and result code
+        // if request code is PICK_IMAGE_REQUEST and
+        // resultCode is RESULT_OK
+        // then set image in the image view
+        if (requestCode == PICK_IMAGE_REQUEST
+                && resultCode == RESULT_OK
+                && data != null
+                && data.getData() != null) {
+
+            // Get the Uri of data
+            filePath = data.getData();
+            try {
+
+                // Setting image on image view using Bitmap
+                Bitmap bitmap = MediaStore
+                        .Images
+                        .Media
+                        .getBitmap(
+                                getContentResolver(),
+                                filePath);
+                image_added.setImageBitmap(bitmap);
+            }
+
+            catch (IOException e) {
+                // Log the exception
+                e.printStackTrace();
+            }
+        }
+    }
+
     private void uploadImage(){
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Posting");
         progressDialog.show();
 
-        if (imageUri != null ){
+        if (filePath != null ){
             final StorageReference filereference = storageReference.child(System.currentTimeMillis()
-                    + "." + getFileExtension(imageUri));
+                    + "." + getFileExtension(filePath));
 
-            uploadTask = filereference.putFile(imageUri);
+            uploadTask = filereference.putFile(filePath);
 
             uploadTask.continueWithTask(new Continuation() {
                 @Override
@@ -100,6 +174,7 @@ public class PostActivity extends AppCompatActivity {
                         throw task.getException();
                     }
                     return filereference.getDownloadUrl();
+
                 }
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
@@ -139,22 +214,6 @@ public class PostActivity extends AppCompatActivity {
             Toast.makeText(PostActivity.this, "No Image Selected!", Toast.LENGTH_SHORT).show();
         }
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            imageUri = result.getUri();
-            image_added.setImageURI(imageUri);
-
-        } else {
-            Toast.makeText(this, "Something has gone wrong!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(PostActivity.this, MainActivity.class));
-            finish();
-        }
     }
 
 }

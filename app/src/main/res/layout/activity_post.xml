@@ -72,6 +72,16 @@
             android:maxLines="5"
             android:id="@+id/description"/>
 
+        <Button
+            android:id="@+id/button_rotate_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Rotate Image"
+            android:textAllCaps="false"
+            android:background="@drawable/button_background"
+            android:padding="10dp"/>
+
     </LinearLayout>
 
 </RelativeLayout>

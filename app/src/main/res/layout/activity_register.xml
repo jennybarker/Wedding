@@ -4,34 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.RegisterActivity"
-    android:orientation="vertical"
-    android:padding="10dp">
+    tools:context=".ui.RegisterActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:src="@drawable/logo"
+        android:layout_margin="10dp"
+        android:id="@+id/logo"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true">
+        android:orientation="vertical"
+        android:layout_below="@+id/logo">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
-        android:layout_gravity="center">
+        android:layout_margin="10dp">
 
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:src="@drawable/logo"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_background"
             android:hint="Wedding Code"
-            android:layout_marginTop="15dp"
             android:id="@+id/wedding_code"
             android:padding="10dp"/>
 
@@ -40,6 +39,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/submit_code"
             android:text="Submit Code"
+            android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:textAllCaps="false"
             android:fontFamily="@font/clicker_script"
@@ -104,6 +104,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/register"
             android:text="Register"
+            android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:textAllCaps="false"
             android:fontFamily="@font/clicker_script"
@@ -116,50 +117,51 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text = "Already have an account? Log In"
+            android:layout_gravity="center_horizontal"
             android:id="@+id/txt_login"
             android:layout_marginTop="10dp"/>
 
-
-    </LinearLayout>
-
-    </ScrollView>
-
-    <LinearLayout
-        android:layout_alignParentBottom="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text = "Privacy Policy"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            android:layout_margin="20dp"
-            android:id="@+id/txt_privacy_policy" />
-
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text ="|"
-            android:layout_gravity="center_vertical"
-            android:textAlignment="center"
-            android:layout_margin="20dp"/>
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text = "Terms and Conditions"
-            android:textAlignment="center"
-            android:id="@+id/txt_terms_conditions"
-            android:layout_margin="20dp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text = "Privacy Policy"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:id="@+id/txt_privacy_policy" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text ="|"
+                android:layout_gravity="center_vertical"
+                android:textAlignment="center"
+                android:layout_margin="20dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text = "Terms and Conditions"
+                android:textAlignment="center"
+                android:id="@+id/txt_terms_conditions"
+                android:layout_margin="20dp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
+
+
+
+    </ScrollView>
 
 </RelativeLayout>

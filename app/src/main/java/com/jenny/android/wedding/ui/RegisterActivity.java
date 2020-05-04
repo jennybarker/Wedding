@@ -23,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.jenny.android.wedding.R;
 
 import java.util.HashMap;
@@ -32,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText username, fullname, email, password, wedding_code;
     Button register, submit_code;
     TextView txt_login, txt_privacy_policy, txt_terms_conditions;
+    String token;
 
     FirebaseAuth auth;
     DatabaseReference reference;
@@ -64,6 +67,18 @@ public class RegisterActivity extends AppCompatActivity {
         wedding_code.setVisibility(View.VISIBLE);
         submit_code.setVisibility(View.VISIBLE);
 
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+            @Override
+            public void onComplete(@NonNull Task< InstanceIdResult > task) {
+                if(task.isSuccessful()){
+
+                    token  = task.getResult().getToken();
+
+                } else {
+
+                }
+            }
+        });
 
         submit_code.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +134,6 @@ public class RegisterActivity extends AppCompatActivity {
                 pd.setMessage("Please wait...");
                 pd.show();
 
-
                 String str_username = username.getText().toString();
                 String str_fullname = fullname.getText().toString();
                 String str_email = email.getText().toString();
@@ -132,7 +146,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, "password must have at least 6 characters", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    register(str_username, str_fullname, str_email, str_password);
+                    register(str_username, str_fullname, str_email, str_password, token);
                 }
 
             }
@@ -153,12 +167,14 @@ public class RegisterActivity extends AppCompatActivity {
             wedding_code.setVisibility(View.GONE);
             submit_code.setVisibility(View.GONE);
 
+        } else {
+            Toast.makeText(getBaseContext(), "The code you entered is incorrect", Toast.LENGTH_LONG).show();
         }
 
     }
 
 
-    private void register(final String username, final String fullname, String email, final String password) {
+    private void register(final String username, final String fullname, String email, final String password, final String token) {
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -175,6 +191,7 @@ public class RegisterActivity extends AppCompatActivity {
                             hashMap.put("fullname", fullname.toLowerCase());
                             hashMap.put("bio", "");
                             hashMap.put("imageurl", "https://firebasestorage.googleapis.com/v0/b/wedding-12487.appspot.com/o/placeholder.png?alt=media&token=a8a3d9fa-b3dc-4ec2-a9f1-cc6d1b135970");
+                            hashMap.put("token", token);
 
                             reference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
