@@ -42,6 +42,17 @@
                     android:layout_marginRight="10dp"
                     android:layout_alignParentRight="true"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/posting"
+                    android:textSize="16sp"
+                    android:text="POSTING..."
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/colorTextDark"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"/>
+
 
             </RelativeLayout>
 
@@ -72,15 +83,6 @@
             android:maxLines="5"
             android:id="@+id/description"/>
 
-        <Button
-            android:id="@+id/button_rotate_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Rotate Image"
-            android:textAllCaps="false"
-            android:background="@drawable/button_background"
-            android:padding="10dp"/>
 
     </LinearLayout>
 

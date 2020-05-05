@@ -25,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.jenny.android.wedding.R;
 
 import java.util.HashMap;
@@ -49,6 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         txt_signup = findViewById(R.id.txt_signup);
 
         auth = FirebaseAuth.getInstance();
+
+        FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications");
 
         txt_signup.setOnClickListener(new View.OnClickListener() {
             @Override

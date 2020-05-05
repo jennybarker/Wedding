@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -45,8 +46,8 @@ public class PostActivity extends AppCompatActivity {
 
     ImageView close, image_added;
     TextView post;
+    TextView posting;
     EditText description;
-    Button rotate_image;
     // request code
     private final int PICK_IMAGE_REQUEST = 22;
     // Uri indicates, where the image will be picked from
@@ -61,8 +62,10 @@ public class PostActivity extends AppCompatActivity {
         close = findViewById(R.id.close);
         image_added = findViewById(R.id.image_added);
         post = findViewById(R.id.post);
+        post.setVisibility(View.VISIBLE);
+        posting = findViewById(R.id.posting);
+        posting.setVisibility(View.GONE);
         description = findViewById(R.id.description);
-        rotate_image = findViewById(R.id.button_rotate_image);
 
         storageReference = FirebaseStorage.getInstance().getReference("post");
 
@@ -78,19 +81,14 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                post.setVisibility(View.GONE);
+                posting.setVisibility(View.VISIBLE);
                 uploadImage();
+
             }
         });
 
         SelectImage();
-
-
-        rotate_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                image_added.setRotation(image_added.getRotation() - 90);
-            }
-        });
     }
 
     private String getFileExtension(Uri uri){
@@ -160,7 +158,6 @@ public class PostActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Posting");
         progressDialog.show();
-
         if (filePath != null ){
             final StorageReference filereference = storageReference.child(System.currentTimeMillis()
                     + "." + getFileExtension(filePath));
@@ -193,14 +190,15 @@ public class PostActivity extends AppCompatActivity {
                         hashMap.put("description", description.getText().toString());
                         hashMap.put("publisher", FirebaseAuth.getInstance().getCurrentUser().getUid());
 
+
+                        startActivity(new Intent(PostActivity.this, MainActivity.class));
+
                         reference.child(postid).setValue(hashMap);
 
                         progressDialog.dismiss();
 
-                        startActivity(new Intent(PostActivity.this, MainActivity.class));
                         finish();
                     } else {
-
                         Toast.makeText(PostActivity.this, "Failed to post!", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -215,5 +213,6 @@ public class PostActivity extends AppCompatActivity {
         }
 
     }
+
 
 }
