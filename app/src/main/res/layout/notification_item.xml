@@ -34,7 +34,6 @@
             android:text="comment"
             android:maxLines="5"/>
 
-
     </LinearLayout>
 
     <ImageView
